@@ -5,11 +5,11 @@ import subprocess
 
 
 def youtube_dl(url):
-    dl_string = "youtube-dl {url} --max-filesize 8m -o ~/github/video_dl_bot/youtube-dl_vid.%(ext)s".format(
+    dl_string = "youtube-dl {url} --max-filesize 8m -o ~/github/video_dl_bot/dls/youtube-dl-output.%(ext)s -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best --merge-output-format mp4".format(
         url=url
     )
     command = dl_string.split(" ")
-    print(command)
+    # print(command)
 
     out = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     stdout, stderr = out.communicate()
