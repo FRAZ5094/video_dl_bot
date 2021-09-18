@@ -1,5 +1,6 @@
 import glob
 import os
+import json
 import requests
 from secrets import discord_bot_token
 
@@ -64,7 +65,6 @@ async def pi_temp(ctx):
 async def affix(ctx):
     r=requests.get("https://raider.io/api/v1/mythic-plus/affixes?region=eu")
     data=json.loads(r.text)
-    # print(json.dumps(data))
 
     levels=["Base", "3+","7+","10+"]
     message=""

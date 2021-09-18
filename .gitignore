@@ -1,2 +1,3 @@
 youtube-dl-output.*
 secrets.py
+__pycache__
