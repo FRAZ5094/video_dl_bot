@@ -1,5 +1,6 @@
 import glob
 import os
+import requests
 from secrets import discord_bot_token
 
 import discord
@@ -55,6 +56,23 @@ async def clear(ctx, amount):
 async def pi_temp(ctx):
     temp = os.popen("vcgencmd measure_temp").read()
     await ctx.send(f"pi {temp}")
+
+@client.command()
+async def affix(ctx):
+    r=requests.get("https://raider.io/api/v1/mythic-plus/affixes?region=eu")
+    data=json.loads(r.text)
+    # print(json.dumps(data))
+
+    levels=["Base", "3+","7+","10+"]
+    message=""
+    for i in range(len(data['affix_details'])):
+        message+=f"{levels[i]}\n"
+        message+=f"{data['affix_details'][i]['name']}\n"
+        message+=f"{data['affix_details'][i]['description']}\n"
+        if i<len(data['affix_details'])-1:
+            message+="---\n"
+
+    await ctx.send(message)
 
 
 client.run(discord_bot_token)
