@@ -29,12 +29,15 @@ async def freq(ctx, word, n=20):
     results = os.popen(
         f"grep {word} -n -m {n} ~/github/video_dl_bot/weibo_wordfreq.release_UTF-8.txt"
     ).read()
-    await ctx.send(results)
+    if len(results)==0:
+        await ctx.send("No results")
+    else:
+        await ctx.send(results)
 
 
 @client.command()
 async def dl(ctx, url):
-    await ctx.channel.purge(limit=1)
+    #await ctx.channel.purge(limit=1)
     await ctx.send(f"downloading: <{url}>")
     output = youtube_dl(url)
     await ctx.send(output)
