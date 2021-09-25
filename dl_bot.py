@@ -31,8 +31,8 @@ async def authorized(ctx):
 async def ip(ctx):
     ip_e = os.popen("curl --silent ip.me").read()
     ip_i= os.popen("ifconfig | grep -o 'inet 192.168.1.[0-9]*' | cut -d' ' -f 2-").read()
-    message=f"External ip: {ip_e}Internal ip: {ip_i}"
-    await ctx.send(message)
+    await ctx.send(ip_e)
+    await ctx.send(ip_i)
 
 
 @client.command()
