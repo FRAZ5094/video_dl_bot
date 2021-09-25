@@ -19,6 +19,21 @@ async def on_ready():
     )
     print("Bot online")
 
+async def authorized(ctx):
+    if ctx.author.id in [145272316778119170]:
+        return True
+    else:
+        await ctx.send("You are not authorized to use this command")
+        return False
+
+@client.command()
+@commands.check(authorized)
+async def ip(ctx):
+    ip_e = os.popen("curl --silent ip.me").read()
+    ip_i= os.popen("ifconfig | grep -o 'inet 192.168.1.[0-9]*' | cut -d' ' -f 2-").read()
+    message=f"External ip: {ip_e}Internal ip: {ip_i}"
+    await ctx.send(message)
+
 
 @client.command()
 async def check(ctx, site):
