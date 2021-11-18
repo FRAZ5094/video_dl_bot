@@ -55,10 +55,11 @@ async def freq(ctx, word, n=20):
 @client.command()
 async def dl(ctx, url):
     #await ctx.channel.purge(limit=1)
+    os.popen("sudo rm /home/fraz/github/video_dl_bot/dls/*")
     await ctx.send(f"downloading: <{url}>")
     output = youtube_dl(url)
     await ctx.send(output)
-    filename = glob.glob("./github/video_dl_bot/dls/*")[0]
+    filename = glob.glob("/home/fraz/github/video_dl_bot/dls/*")[0]
     await ctx.send("uploading...")
     await ctx.send(file=discord.File(filename))
     os.popen("sudo rm ~/github/video_dl_bot/dls/*")
