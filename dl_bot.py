@@ -42,6 +42,11 @@ async def check(ctx, site):
 
 
 @client.command()
+async def kember(ctx):
+    resp = os.popen(f"python3 ~/kember_copy_pasta.py").read()
+    await ctx.send(resp)
+
+@client.command()
 async def freq(ctx, word, n=20):
     results = os.popen(
         f"grep {word} -n -m {n} ~/github/video_dl_bot/weibo_wordfreq.release_UTF-8.txt"
