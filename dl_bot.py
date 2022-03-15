@@ -43,7 +43,7 @@ async def check(ctx, site):
 
 @client.command()
 async def kember(ctx):
-    resp = os.popen(f"python3 ~/kember_copy_pasta.py").read()
+    resp = os.popen(f"python3 ~github/video_dl_bot/kember_copy_pasta.py").read()
     await ctx.send(resp)
 
 @client.command()
