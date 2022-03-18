@@ -6,13 +6,16 @@ import sys
 from random import randint
 string="Can you believe it guys? {0}, just {1} away. {0} is in {1}! Woohoo! I am so happy about this information. {0}! Just {1} away, oh wow. Can you believe it? {0}! Just in {1}! It got here so fast! {0}! Just {1} away!"
 now=datetime.datetime.now()
-n_days_till_saturday=(12 - now.weekday()) % 7
-kember_day = now + datetime.timedelta(days=n_days_till_saturday)
-kember_day=kember_day.replace(hour=10,minute=0,second=0,microsecond=0)
-delta=kember_day-now
-text="Kember and Jones"
+davids_birthday = datetime.datetime(now.year,3,19)
+
+if now.month >=davids_birthday.month and now.day<davids_birthday.day:
+    davids_birthday=davids_birthday.replace(year=now.year)
+else:
+    davids_birthday=davids_birthday.replace(year=now.year+1)
+
+delta=now-davids_birthday
+text="David's Birthday"
 time_string=humanize.precisedelta(delta, minimum_unit='seconds', suppress=(), format='%0.0f')
-# time_string=humanize.precisedelta(datetime.timedelta(days=0,hours=randint(0,23),seconds=randint(0,59)), minimum_unit='seconds', suppress=(), format='%0.0f')
 formatted_string=string.format(text, time_string)
 
 
@@ -39,3 +42,4 @@ r = requests.post('https://api.emojify.net/convert', headers=headers, json=json_
 
 data=json.loads(r.text)["result"]
 print(data)
+

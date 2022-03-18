@@ -43,7 +43,17 @@ async def check(ctx, site):
 
 @client.command()
 async def kember(ctx):
-    resp = os.popen(f"python3 ~github/video_dl_bot/kember_copy_pasta.py").read()
+    resp = os.popen(f"python3 ~/github/video_dl_bot/kember_copy_pasta.py").read()
+    await ctx.send(resp)
+
+@client.command()
+async def x_days(ctx, text, delta):
+    resp = os.popen(f"python3 ~/github/video_dl_bot/only_x_days_copy_pasta.py \"{text}\" {delta}").read()
+    await ctx.send(resp)
+
+@client.command()
+async def david_bday(ctx):
+    resp = os.popen(f"python3 ~/github/video_dl_bot/david_birthday.py").read()
     await ctx.send(resp)
 
 @client.command()
