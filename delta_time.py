@@ -8,6 +8,6 @@ now=datetime.now()
 
 date = parser.parse(string)
 
-delta=now-date
+delta=date-now
 
 print(int(delta.total_seconds()))
